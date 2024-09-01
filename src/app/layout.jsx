@@ -12,6 +12,7 @@ export default function RootLayout({ children }) {
         <SessionProvider>
         {children}
         </SessionProvider>
+        <script src="https://kit.fontawesome.com/6a1f5752a8.js" crossOrigin="anonymous" />
       </body>
     </html>
   );

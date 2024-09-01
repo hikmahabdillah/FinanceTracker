@@ -73,12 +73,6 @@ export default function LoginPage() {
                   placeholder="******************"
                 />
               </div>
-              <div className="mb-4">
-                <input className="mr-2 leading-tight" type="checkbox" id="checkbox_id" />
-                <label className="text-sm text-neutral-800" htmlFor="checkbox_id">
-                  Remember Me
-                </label>
-              </div>
               <div className="mb-6 text-center">
                 <button
                   className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
@@ -93,6 +87,7 @@ export default function LoginPage() {
                   disabled={isLoading}
                   onClick={() => signIn('google', { redirect: false })}
                 >
+                  <i className="fa-brands fa-google fa-xl mr-3"/>
                   {isLoading ? "Loading..." : "Sign In with Google"}
                 </button>
               </div>

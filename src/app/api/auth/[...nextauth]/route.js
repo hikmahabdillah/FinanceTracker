@@ -2,13 +2,14 @@ import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { NextResponse } from 'next/server';
+import cookie from 'cookie';
 
 const prisma = new PrismaClient();
 
 export async function POST(request) {
-  const { email, password } = await request.json(); // Mengambil data dari body request
+  const { email, password } = await request.json();
+  
   try {
-    // Temukan pengguna berdasarkan email
     const user = await prisma.user.findUnique({
       where: { email },
     });
@@ -28,10 +29,19 @@ export async function POST(request) {
     const token = jwt.sign(
       { userId: user.id, email: user.email, username: user.username },
       process.env.JWT_SECRET,
-      { expiresIn: '1h' }
     );
 
-    return NextResponse.json({ message: 'Login successful', token }, { status: 200 });
+    const response = NextResponse.json({ message: 'Login successful' });
+    response.headers.append(
+      'Set-Cookie',
+      cookie.serialize('token', token, {
+        httpOnly: true,
+        secure: process.env.NEXTAUTH_SECRET === 'aldrin44',
+        path: '/',
+      })
+    );
+
+    return response;
   } catch (error) {
     console.error('Error during login:', error);
     return NextResponse.json({ error: 'Something went wrong' }, { status: 500 });
