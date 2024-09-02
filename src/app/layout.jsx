@@ -10,9 +10,13 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <SessionProvider>
-        {children}
+          {children}
         </SessionProvider>
-        <script src="https://kit.fontawesome.com/6a1f5752a8.js" crossOrigin="anonymous" />
+        <script
+          src="https://kit.fontawesome.com/6a1f5752a8.js"
+          crossOrigin="anonymous"
+          async
+        />
       </body>
     </html>
   );
