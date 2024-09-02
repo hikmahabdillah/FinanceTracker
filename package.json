@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "migrate": "npx prisma migrate deploy",
+    "generate": "npx prisma generate",
+    "postbuild": "npm run migrate && npm run generate"
   },
   "dependencies": {
     "@prisma/client": "^5.18.0",
