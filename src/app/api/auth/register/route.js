@@ -2,7 +2,16 @@ import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 import { NextResponse } from 'next/server';
 
-const prisma = new PrismaClient();
+let prisma = new PrismaClient();
+
+if (process.env.NEXTAUTH_SECRET === 'aldrin44') {
+  prisma = new PrismaClient();
+} else {
+  if (!global.prisma) {
+    global.prisma = new PrismaClient();
+  }
+  prisma = global.prisma;
+}
 
 export async function POST(request) {
   try {

@@ -1,4 +1,5 @@
 "use client"
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -44,16 +45,24 @@ export default function RegisterPage() {
 
   return (
     <div className="flex min-h-screen items-center justify-center">
-      <div className="flex w-full h-full justify-center px-6 my-12">
-        <div className="w-full h-auto lg:h-[33rem] max-w-lg xl:w-3/4 lg:w-11/12 lg:max-w-4xl flex">
+      <div className="flex w-full h-screen [@media(min-width:500px)]:h-full justify-center [@media(min-width:500px)]:px-6 [@media(min-width:500px)]:my-12">
+        <div className="w-full h-auto lg:h-[34.5rem] max-w-lg xl:w-3/4 lg:w-11/12 lg:max-w-4xl flex">
           <div
             className="w-full bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-l-xl"
             style={{ backgroundImage: "url('https://i.pinimg.com/736x/a8/a0/64/a8a0647e82c8a8e725c5afc4bf31c5c5.jpg')" }}
           />
-          <div className="w-full h-full flex flex-col justify-center items-center lg:w-1/2 bg-white p-5 rounded-xl lg:rounded-l-none">
+          <div className="w-full h-full flex flex-col justify-center items-center lg:w-1/2 bg-white p-5 [@media(min-width:500px)]:rounded-xl  lg:rounded-l-none">
+          <Image
+              src="/logo.png"
+              alt="Logo"
+              className="rounded-lg shadow-sm my-3 size-20 sm:size-16"
+              width={100}
+              height={100}
+              priority
+            />
             <h3 className="pt-4 font-bold text-2xl text-center text-neutral-800">Create An Account!</h3>
             {error && <p className="text-red-600">{error}</p>}
-            <form className="w-full px-8 pt-6 mb-4 bg-white rounded" onSubmit={handleSubmit}>
+            <form className="w-full px-3 md:px-8 pt-6 mb-4 bg-white rounded" onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="username">
                   Username
